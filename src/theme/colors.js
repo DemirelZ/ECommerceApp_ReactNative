@@ -5,5 +5,7 @@ export const AppColor = {
     RED:'#F47373',
     BLACK:'#555555',
     PURPLE:'#BA68C8',
-    BLUE:'#2CCCE4'
+    BLUE:'#2CCCE4',
+    WHITE:'#ffffff',
+    SOFTGRAY:'#cccccc'
 }

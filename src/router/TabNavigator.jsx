@@ -9,6 +9,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Home3, ShoppingCart} from 'iconsax-react-native';
 import TabIcon from '../components/router/TabIcon';
 import {AppColor} from '../theme/colors';
+import HeaderTabRight from '../components/router/headerTabRight';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,9 +28,7 @@ const TabNavigator = () => {
         ),
 
         headerRight: () => (
-          <TouchableOpacity style={{marginHorizontal: 20}}>
-            <ShoppingCart size="32" color={AppColor.BLACK} variant="Bold" />
-          </TouchableOpacity>
+          <HeaderTabRight/>
         ),
 
         tabBarActiveTintColor: AppColor.PRIMARY,
