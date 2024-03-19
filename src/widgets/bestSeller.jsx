@@ -2,33 +2,37 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import WidgetTitle from '../components/widgets/widgetTitle';
 import {getRequest} from '../service/verbs';
-import {PRODUCTS_URL} from '../service/urls';
+import {CATEGORY_URL, PRODUCTS_URL} from '../service/urls';
 import WidgetProductCard from '../components/widgets/widgetProductCard';
 import CategorySelect from '../components/widgets/categorySelect';
+import Loading from '../components/uı/Loading';
 
 const BestSeller = () => {
-  const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
 
-  const getAllProducts = () => {
-    getRequest(PRODUCTS_URL)
-      .then(response => setProducts(response.data))
-      .catch(error => console.log(error));
+  const getSelectedCategoryProducts = (category = 'jewelery') => {
+    getRequest(CATEGORY_URL + `/${category}`)
+      .then(res => setSelectedCategory(res.data))
+      .catch(err => console.log(err));
   };
 
   useEffect(() => {
-    getAllProducts();
+    getSelectedCategoryProducts();
   }, []);
   return (
     <View>
       <WidgetTitle title={'Best Seller'} />
-      <CategorySelect/>
-      <FlatList
-        horizontal
-       
-        showsHorizontalScrollIndicator={false}
-        data={products}
-        renderItem={({item}) => <WidgetProductCard item={item} />}
-      />
+      <CategorySelect handleSelect={getSelectedCategoryProducts} />
+      {!selectedCategory ? (
+        <Loading />
+      ) : (
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={selectedCategory}
+          renderItem={({item}) => <WidgetProductCard item={item} />}
+        />
+      )}
     </View>
   );
 };

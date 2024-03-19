@@ -4,6 +4,7 @@ import WidgetTitle from '../components/widgets/widgetTitle';
 import {getRequest} from '../service/verbs';
 import {PRODUCTS_URL} from '../service/urls';
 import WidgetProductCard from '../components/widgets/widgetProductCard';
+import Loading from '../components/uı/Loading';
 
 const NewArrival = () => {
   const [products, setProducts] = useState([]);
@@ -20,12 +21,16 @@ const NewArrival = () => {
   return (
     <View>
       <WidgetTitle title={'New Arrival'} />
-      <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        data={products}
-        renderItem={({item}) => <WidgetProductCard item={item} />}
-      />
+      {!products ? (
+        <Loading />
+      ) : (
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={products}
+          renderItem={({item}) => <WidgetProductCard item={item} />}
+        />
+      )}
     </View>
   );
 };
