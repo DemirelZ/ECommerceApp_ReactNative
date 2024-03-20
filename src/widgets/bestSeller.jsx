@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import WidgetTitle from '../components/widgets/widgetTitle';
 import {getRequest} from '../service/verbs';
 import {CATEGORY_URL, PRODUCTS_URL} from '../service/urls';
-import WidgetProductCard from '../components/widgets/widgetProductCard';
+import ProductCard from '../components/widgets/ProductCard';
 import CategorySelect from '../components/widgets/categorySelect';
 import Loading from '../components/uı/Loading';
 
@@ -30,7 +30,7 @@ const BestSeller = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={selectedCategory}
-          renderItem={({item}) => <WidgetProductCard item={item} />}
+          renderItem={({item}) => <ProductCard item={item} />}
         />
       )}
     </View>

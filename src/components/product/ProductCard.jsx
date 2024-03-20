@@ -1,13 +1,25 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import React from 'react';
 import {Heart} from 'iconsax-react-native';
 import {width} from '../../utils/constants';
 import {AppColor} from '../../theme/colors';
+import Button from '../uı/Button';
+import {useNavigation} from '@react-navigation/native';
+import {PRODUCTDETAIL} from '../../utils/routes';
 
-const WidgetProductCard = ({item}) => {
-
+const ProductCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate(PRODUCTDETAIL, {item: item})}>
       <Image
         source={{
           uri: item.image,
@@ -15,7 +27,9 @@ const WidgetProductCard = ({item}) => {
         style={styles.image}
       />
       <View style={{gap: 10}}>
-        <Text numberOfLines={3} style={{fontSize: 16, fontWeight: '800'}}>{item.title}</Text>
+        <Text numberOfLines={3} style={{fontSize: 16, fontWeight: '800'}}>
+          {item.title}
+        </Text>
         <View style={{flexDirection: 'row'}}>
           <View style={{flex: 3, gap: 10}}>
             <Text style={{fontSize: 14, color: AppColor.SECONDARY}}>
@@ -29,23 +43,25 @@ const WidgetProductCard = ({item}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity>
-        <Text>Sepete Ekle</Text>
-      </TouchableOpacity>
-    </View>
+      <View>
+        <Button title={'Add to Cart'} />
+      </View>
+    </Pressable>
   );
 };
 
-export default WidgetProductCard;
+export default ProductCard;
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: AppColor.SECONDARY,
+    flex: 1,
+    borderWidth: 0.5,
+    borderColor: AppColor.SOFTGRAY,
     marginRight: 12,
     padding: 5,
     borderRadius: 8,
-    width: width * 0.4,
+    width: width / 2.2,
+    marginVertical: 10,
   },
   image: {
     width: width * 0.37,
@@ -53,16 +69,5 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginVertical: 5,
     alignSelf: 'center',
-  },
-  shadow: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9,
   },
 });

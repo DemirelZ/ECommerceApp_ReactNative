@@ -13,7 +13,7 @@ const HeaderTabRight = () => {
   return (
     <View style={styles.right}>
       <TouchableOpacity>
-        <SearchNormal size="32" color={AppColor.BLACK} />
+        <SearchNormal size="28" color={AppColor.BLACK} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate(CART)}>
         {count > 0 && (
@@ -24,7 +24,7 @@ const HeaderTabRight = () => {
             </Text>
           </View>
         )}
-        <ShoppingCart size="32" color={AppColor.BLACK} />
+        <ShoppingCart size="28" color={AppColor.BLACK} />
       </TouchableOpacity>
     </View>
   );
@@ -34,6 +34,7 @@ export default HeaderTabRight;
 
 const styles = StyleSheet.create({
   right: {
+    marginTop:5,
     flexDirection: 'row',
     gap: 14,
     marginRight: 18,
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: AppColor.PRIMARY,
     alignItems:'center',
     justifyContent:'center',
-    width: 20,
-    height: 20,
+    width: 18,
+    height: 18,
     borderRadius: 100,
     position: 'absolute',
     zIndex: 99,

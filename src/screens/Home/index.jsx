@@ -9,7 +9,11 @@ const Home = () => {
   };
   return (
     <View style={screenStyle.container}>
-      <FlatList showsVerticalScrollIndicator={false} data={widgets} renderItem={renderItem} />
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={widgets}
+        renderItem={renderItem}
+      />
     </View>
   );
 };
