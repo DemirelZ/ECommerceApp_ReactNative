@@ -25,7 +25,10 @@ function StackNavigator() {
       />
       <Stack.Screen name={CART} component={Cart} />
       <Stack.Screen
-        options={{headerRight: () => <HeaderTabRight />}}
+        options={({route, navigation}) => ({
+          headerRight: () => <HeaderTabRight />,
+          title: route?.params?.title,
+        })}
         name={PRODUCTSLIST}
         component={ProductList}
       />

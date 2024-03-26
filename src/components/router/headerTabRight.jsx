@@ -1,26 +1,27 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import {SearchNormal, ShoppingCart} from 'iconsax-react-native';
 import {AppColor} from '../../theme/colors';
 import {useNavigation} from '@react-navigation/native';
 import {CART} from '../../utils/routes';
+import StoreContext from '../../context';
 
 
 const HeaderTabRight = () => {
   const navigation = useNavigation();
 
-  const [count, setCount] = useState(1);
+  const  {cart}=useContext(StoreContext)
   return (
     <View style={styles.right}>
       <TouchableOpacity>
         <SearchNormal size="28" color={AppColor.BLACK} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate(CART)}>
-        {count > 0 && (
+        {cart.length > 0 && (
           <View style={styles.badge}>
             <Text
               style={{color: AppColor.WHITE, fontSize: 12, fontWeight: '700'}}>
-              {count}
+              {cart.length}
             </Text>
           </View>
         )}

@@ -1,10 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import StoreContext from '../../context'
+import { screenStyle } from '../../styles/Screenstyle'
+import CartCard from '../../components/Cart/cartCard'
 
 const Cart = () => {
+  const {cart}=useContext(StoreContext)
   return (
-    <View>
-      <Text>Cart</Text>
+    <View style={screenStyle.container}>
+
+    <FlatList
+      data={cart}
+      renderItem={({item})=>(<CartCard item={item} />)}
+    />
+      
     </View>
   )
 }

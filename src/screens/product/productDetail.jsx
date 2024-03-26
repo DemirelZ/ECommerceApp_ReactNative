@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {screenStyle} from '../../styles/Screenstyle';
 import Button from '../../components/uı/Button';
 import Counter from '../../components/uı/Counter';
@@ -16,12 +16,15 @@ import {PRODUCTS_URL} from '../../service/urls';
 import Loading from '../../components/uı/Loading';
 import {AppColor} from '../../theme/colors';
 import {Heart, Star, Star1} from 'iconsax-react-native';
+import StoreContext from '../../context';
 
 const ProductDetail = ({route}) => {
   const {item} = route?.params;
 
   const [product, setProduct] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
+
+  const {addCart}=useContext(StoreContext)
 
   const getProductDetail = id => {
     setIsLoad(true);
@@ -87,7 +90,7 @@ const ProductDetail = ({route}) => {
           <Counter onChange={() => {}} />
         </View>
         <View style={styles.buttonWrapper}>
-          <Button title={'Add to Cart'} />
+          <Button title={'Add to Cart'} onPress={()=>addCart(product)} />
         </View>
       </View>
     </View>
@@ -102,12 +105,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
 
-    width: width * 0.94,
+    width: width*0.98,
     height: height * 0.06,
 
     position: 'absolute',
     bottom: height * 0.04,
     gap: 10,
+    zIndex:100,
+    backgroundColor:AppColor.WHITE
   },
   counterWrapper: {
     flex: 2,

@@ -7,9 +7,11 @@ import ProductCard from '../../components/product/ProductCard';
 import {screenStyle} from '../../styles/Screenstyle';
 import CategorySelect from '../../components/widgets/categorySelect';
 
-const ProductList = () => {
+const ProductList = ({route}) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const productCategory = route?.params?.title;
 
   const getAllProducts = category => {
     setIsLoading(true);
@@ -23,7 +25,7 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
+    getAllProducts(productCategory);
   }, []);
 
   return (
