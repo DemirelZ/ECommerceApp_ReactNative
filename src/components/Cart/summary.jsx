@@ -1,5 +1,5 @@
 import {Alert, StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Button from '../uı/Button';
 import {AppColor} from '../../theme/colors';
 import {height} from '../../utils/constants';
@@ -10,7 +10,16 @@ import {CHECKOUT, LOGIN} from '../../utils/routes';
 const Summary = () => {
   const navigation = useNavigation();
 
-  const {isLogin} = useContext(StoreContext);
+  const {isLogin, sumEnd} = useContext(StoreContext);
+
+  
+  
+
+
+
+
+
+
 
   const CheckOut = () => {
     if (isLogin) {
@@ -41,7 +50,7 @@ const Summary = () => {
             style={{color: AppColor.SOFTGRAY, fontSize: 18, fontWeight: '600'}}>
             Subtotal
           </Text>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>800</Text>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>{sumEnd}</Text>
         </View>
         <View
           style={{
@@ -80,7 +89,7 @@ const Summary = () => {
             style={{color: AppColor.SOFTGRAY, fontSize: 18, fontWeight: '600'}}>
             TOTAL
           </Text>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>820</Text>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>{sumEnd+20}</Text>
         </View>
       </View>
 

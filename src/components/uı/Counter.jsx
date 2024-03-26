@@ -1,10 +1,13 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {AddCircle, MinusCirlce} from 'iconsax-react-native';
 import {AppColor} from '../../theme/colors';
+import StoreContext from '../../context';
 
 const Counter = ({onChange, size=30}) => {
-  const [count, setCount] = useState(0);
+
+  const {count, setCount}=useContext(StoreContext)
+  
 
   const inc = () => {
     if (count > 0) {

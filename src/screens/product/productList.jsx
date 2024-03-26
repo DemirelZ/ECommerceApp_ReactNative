@@ -17,7 +17,13 @@ const ProductList = ({route}) => {
     setIsLoading(true);
     const url = category ? CATEGORY_URL + `/${category}` : PRODUCTS_URL;
     getRequest(url)
-      .then(response => setProducts(response.data))
+      .then(response => {
+        const productsWithQty = response.data.map(product => ({
+          ...product,
+          qty: 1,
+        }));
+        setProducts(productsWithQty);
+      })
       .catch(error => console.log(error))
       .finally(() => {
         setIsLoading(false);

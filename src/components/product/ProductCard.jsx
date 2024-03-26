@@ -28,7 +28,7 @@ const ProductCard = ({item}) => {
         }}
         style={styles.image}
       />
-      <View style={{gap: 10}}>
+      <View style={{gap:10, flex:1}}>
         <Text numberOfLines={3} style={{fontSize: 16, fontWeight: '800'}}>
           {item.title}
         </Text>

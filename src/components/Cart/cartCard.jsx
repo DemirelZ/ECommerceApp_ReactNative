@@ -27,7 +27,7 @@ const CartCard = ({item}) => {
         <Text style={{paddingTop:20, fontSize:18, fontWeight:'bold'}}>${item.price}</Text>
       </View>
       <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end', paddingBottom:5, paddingRight:5}}>
-        <Counter size={18}/>
+        <Counter onChange={() => {}} size={18}/>
       </View>
     </View>
   );
