@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {Heart} from 'iconsax-react-native';
 import {width} from '../../utils/constants';
 import {AppColor} from '../../theme/colors';
@@ -17,7 +17,7 @@ import StoreContext from '../../context';
 
 const ProductCard = ({item}) => {
   const navigation = useNavigation();
-  const {addCart}=useContext(StoreContext)
+  const {addCart} = useContext(StoreContext);
   return (
     <Pressable
       style={styles.container}
@@ -46,7 +46,7 @@ const ProductCard = ({item}) => {
         </View>
       </View>
       <View>
-        <Button title={'Add to Cart'} onPress={()=>addCart(item)} />
+        <Button title={'Add to Cart'} onPress={() => addCart(item)} />
       </View>
     </Pressable>
   );

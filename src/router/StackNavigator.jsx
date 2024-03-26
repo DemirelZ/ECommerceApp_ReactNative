@@ -1,11 +1,20 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {CART, PRODUCTDETAIL, PRODUCTSLIST, TAB} from '../utils/routes';
+import {
+  CART,
+  CHECKOUT,
+  LOGIN,
+  PRODUCTDETAIL,
+  PRODUCTSLIST,
+  TAB,
+} from '../utils/routes';
 import TabNavigator from './TabNavigator';
 import Cart from '../screens/Cart';
 import {AppColor} from '../theme/colors';
 import ProductList from '../screens/product/productList';
 import ProductDetail from '../screens/product/productDetail';
 import HeaderTabRight from '../components/router/headerTabRight';
+import Login from '../screens/Login';
+import CheckOut from '../screens/CheckOut';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +46,12 @@ function StackNavigator() {
         name={PRODUCTDETAIL}
         component={ProductDetail}
       />
+      <Stack.Screen
+        options={{headerRight: () => <HeaderTabRight />}}
+        name={LOGIN}
+        component={Login}
+      />
+      <Stack.Screen name={CHECKOUT} component={CheckOut} />
     </Stack.Navigator>
   );
 }

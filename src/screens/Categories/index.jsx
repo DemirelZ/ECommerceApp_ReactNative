@@ -7,6 +7,7 @@ import CategoryCard from '../../components/Category/CategoryCard';
 import {screenStyle} from '../../styles/Screenstyle';
 import Loading from '../../components/uı/Loading';
 
+
 const Categories = () => {
   const [category, setCategory] = useState([]);
 
@@ -28,10 +29,13 @@ const Categories = () => {
         <Loading />
       ) : (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={category}
           renderItem={({item}) => <CategoryCard item={item} />}
+          keyExtractor={item => item.id}
         />
       )}
+      
     </View>
   );
 };

@@ -4,13 +4,17 @@ import {NavigationContainer} from '@react-navigation/native';
 import TabNavigator from './src/router/TabNavigator';
 import StackNavigator from './src/router/StackNavigator';
 import Provider from './src/context/provider';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
 
 const App = () => {
   return (
     <Provider>
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </ApplicationProvider>
     </Provider>
   );
 };
