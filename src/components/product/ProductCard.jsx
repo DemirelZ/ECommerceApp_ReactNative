@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
+  Alert
 } from 'react-native';
 import React, {useContext} from 'react';
 import {Heart} from 'iconsax-react-native';
@@ -12,12 +13,28 @@ import {width} from '../../utils/constants';
 import {AppColor} from '../../theme/colors';
 import Button from '../uı/Button';
 import {useNavigation} from '@react-navigation/native';
-import {PRODUCTDETAIL} from '../../utils/routes';
+import {LOGIN, PRODUCTDETAIL} from '../../utils/routes';
 import StoreContext from '../../context';
 
 const ProductCard = ({item}) => {
   const navigation = useNavigation();
-  const {addCart} = useContext(StoreContext);
+  const {addCart, addFavourites, isLogin} = useContext(StoreContext);
+
+  const CheckIsLogin = () => {
+    if (isLogin) {
+      addFavourites(item)
+    } else {
+      Alert.alert('Uyarı', 'Ürünü favorilere eklemek için lütfen giriş yapınız', [
+        {
+          text: 'Vazgeç',
+
+          style: 'cancel',
+        },
+        {text: 'Login', onPress: () => navigation.navigate(LOGIN)},
+      ]);
+    }
+  };
+
   return (
     <Pressable
       style={styles.container}
@@ -28,7 +45,7 @@ const ProductCard = ({item}) => {
         }}
         style={styles.image}
       />
-      <View style={{gap:10, flex:1}}>
+      <View style={{gap: 10, flex: 1}}>
         <Text numberOfLines={3} style={{fontSize: 16, fontWeight: '800'}}>
           {item.title}
         </Text>
@@ -40,8 +57,13 @@ const ProductCard = ({item}) => {
             <Text style={{fontSize: 16, fontWeight: '800'}}>${item.price}</Text>
           </View>
           <TouchableOpacity
+            onPress={CheckIsLogin}
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Heart color={AppColor.RED} />
+            {item.isFav ? (
+              <Heart color={AppColor.RED} variant="Bold" />
+            ) : (
+              <Heart color={AppColor.RED} variant="Linear" />
+            )}
           </TouchableOpacity>
         </View>
       </View>

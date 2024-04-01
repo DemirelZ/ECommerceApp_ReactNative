@@ -12,14 +12,7 @@ const Summary = () => {
 
   const {isLogin, sumEnd} = useContext(StoreContext);
 
-  
-  
-
-
-
-
-
-
+  const toplam=sumEnd.toFixed(2)
 
   const CheckOut = () => {
     if (isLogin) {
@@ -50,7 +43,7 @@ const Summary = () => {
             style={{color: AppColor.SOFTGRAY, fontSize: 18, fontWeight: '600'}}>
             Subtotal
           </Text>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>{sumEnd}</Text>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>{toplam}</Text>
         </View>
         <View
           style={{
@@ -89,7 +82,7 @@ const Summary = () => {
             style={{color: AppColor.SOFTGRAY, fontSize: 18, fontWeight: '600'}}>
             TOTAL
           </Text>
-          <Text style={{fontSize: 18, fontWeight: '600'}}>{sumEnd+20}</Text>
+          <Text style={{fontSize: 18, fontWeight: '600'}}>{parseFloat(toplam) + 20}</Text>
         </View>
       </View>
 
